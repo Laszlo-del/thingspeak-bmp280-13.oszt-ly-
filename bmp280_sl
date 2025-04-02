@@ -6,8 +6,8 @@ from bmp280 import BMP280
 from gpiozero import PWMLED
 from time import sleep
 
-green_led = PWMLED(20)  # Zöld LED a GPIO 20 pinhez
-red_led = PWMLED(21)    # Piros LED a GPIO 21 pinhez
+blue_led = PWMLED(26)  # Kék LED a GPIO 26 pinhez
+red_led = PWMLED(21)   # Piros LED a GPIO 21 pinhez
 
 # Szerver URL, amely az XAMPP-on futó PHP fájlhoz kapcsolódik
 server_url = 'http://127.0.0.1/sensor/insert_data.php'
@@ -36,11 +36,11 @@ while True:
 
     # LED-ek kapcsolása a hőmérséklet alapján
     if temperature > 20:
-        red_led.value = 1   # Piros LED bekapcsolása
-        green_led.value = 0  # Zöld LED kikapcsolása
+        red_led.value = 1    # Piros LED bekapcsolása
+        blue_led.value = 0   # Kék LED kikapcsolása
     else:
-        red_led.value = 0   # Piros LED kikapcsolása
-        green_led.value = 1  # Zöld LED bekapcsolása
+        red_led.value = 0    # Piros LED kikapcsolása
+        blue_led.value = 1   # Kék LED bekapcsolása
 
     # Adatok küldése a szerverre
     send_data_to_server(temperature, pressure)
